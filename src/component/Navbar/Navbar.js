@@ -10,6 +10,9 @@ import NotificationsActiveSharpIcon from '@material-ui/icons/NotificationsActive
 import PersonSharpIcon from '@material-ui/icons/PersonSharp';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
+import Stories from '../stories/Stories'
+import Profile from '../Profile/Profile'
+import Notification from '../Notification/Notification'
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -72,7 +75,7 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="static">
         <Tabs
           variant="fullWidth"
           value={value}
@@ -86,16 +89,16 @@ export default function Navbar() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Page One dsjf  dksfj dksfj dskfj dskjf deksfjddksfjdg jfdhdksjdf kdfjd dekfjd Page One dsjf  dksfj dksfj dskfj dskjf deksfjddksfjdg jfdhdksjdf kdfjd dekfjd Page One dsjf  dksfj dksfj dskfj dskjf deksfjddksfjdg jfdhdksjdf kdfjd dekfjd Page One dsjf  dksfj dksfj dskfj dskjf deksfjddksfjdg jfdhdksjdf kdfjd dekfjdPage One dsjf  dksfj dksfj dskfj dskjf deksfjddksfjdg jfdhdksjdf kdfjd dekfjd
+      <Stories/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Page Two
+        <Stories/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Page Three
+        <Notification/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-      Page fourth
+      <Profile/>
     </TabPanel>
     </div>
   );
