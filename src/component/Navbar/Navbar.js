@@ -14,6 +14,8 @@ import Stories from '../stories/Stories'
 import Profile from '../Profile/Profile'
 import Notification from '../Notification/Notification'
 import Badge from '@material-ui/core/Badge';
+import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
+import ProfileUpdate from "../Profile/ProfileUpdate"
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -76,6 +78,7 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
+    <BrowserRouter>
       <AppBar position="fixed" style={{backgroundColor:"#00838F"}}>
         <Tabs
           variant="fullWidth"
@@ -83,24 +86,22 @@ export default function Navbar() {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab icon={<CreditCardIcon/>} href="/drafts" {...a11yProps(0)} style={{color:"white"}}/>
-          <LinkTab icon={<LiveTvIcon/>} href="/trash" {...a11yProps(1)} style={{color:"white"}} />
-          <LinkTab icon={<Badge badgeContent={4} color="red" backgroundColor="white"><NotificationsActiveSharpIcon/></Badge>} href="/spam" {...a11yProps(2)} style={{color:"white"}}/>
-          <LinkTab icon={<PersonSharpIcon/>} href="/spam" {...a11yProps(3)} style={{color:"white"}}/>
+          <Tab component={Link} to="/Stories" icon={<CreditCardIcon/>}  {...a11yProps(0)} style={{color:"white"}}/>
+          <Tab component={Link} to="/Trending" icon={<LiveTvIcon/>} href="/trash" {...a11yProps(1)} style={{color:"white"}} />
+          <Tab component={Link} to="/Notification" icon={<Badge badgeContent={4} color="red" backgroundColor="white"><NotificationsActiveSharpIcon/></Badge>} href="/spam" {...a11yProps(2)} style={{color:"white"}}/>
+          <Tab component={Link} to="/Profile" icon={<PersonSharpIcon/>} href="/spam" {...a11yProps(3)} style={{color:"white"}}/>
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-      <Stories/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Stories/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Notification/>
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-      <Profile/>
-    </TabPanel>
+
+      <Switch>
+      <Route exact path="/" component={Stories}/>
+      <Route path="/Stories" component={Stories} />
+      <Route path="/Trending" component={Stories} />
+       <Route path="/Notification" component={Notification}/>
+       <Route path="/Profile" component={Profile}/>
+      <Route path="/ProfileUpdate" component={ProfileUpdate}/>
+    </Switch>
+    </BrowserRouter>
     </div>
   );
 }

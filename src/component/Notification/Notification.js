@@ -3,7 +3,7 @@ const Notification = () =>
 {
     return (
         <div>
-        <div style={{margin:"30px"}}> Coming Soon</div>
+        <div style={{margin:"80px"}}> Coming Soon</div>
         </div>
     )
 }
