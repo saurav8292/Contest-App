@@ -13,6 +13,7 @@ import CreditCardIcon from '@material-ui/icons/CreditCard';
 import Stories from '../stories/Stories'
 import Profile from '../Profile/Profile'
 import Notification from '../Notification/Notification'
+import Badge from '@material-ui/core/Badge';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -75,17 +76,17 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed" style={{backgroundColor:"#00838F"}}>
         <Tabs
           variant="fullWidth"
           value={value}
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab icon={<CreditCardIcon/>} href="/drafts" {...a11yProps(0)} />
-          <LinkTab icon={<LiveTvIcon/>} href="/trash" {...a11yProps(1)} />
-          <LinkTab icon={<NotificationsActiveSharpIcon/>} href="/spam" {...a11yProps(2)} />
-          <LinkTab icon={<PersonSharpIcon/>} href="/spam" {...a11yProps(3)} />
+          <LinkTab icon={<CreditCardIcon/>} href="/drafts" {...a11yProps(0)} style={{color:"white"}}/>
+          <LinkTab icon={<LiveTvIcon/>} href="/trash" {...a11yProps(1)} style={{color:"white"}} />
+          <LinkTab icon={<Badge badgeContent={4} color="red" backgroundColor="white"><NotificationsActiveSharpIcon/></Badge>} href="/spam" {...a11yProps(2)} style={{color:"white"}}/>
+          <LinkTab icon={<PersonSharpIcon/>} href="/spam" {...a11yProps(3)} style={{color:"white"}}/>
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

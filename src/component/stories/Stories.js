@@ -11,7 +11,8 @@ import Container from '@material-ui/core/Container';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
-
+import Cards from './Cards'
+import './Stories.css'
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
@@ -64,7 +65,10 @@ export default function Stories(props) {
       <CssBaseline />
       <Toolbar id="back-to-top-anchor" />
       <Container>
-        <div className="">yguhi</div>
+      <div className="cardss">
+      <Cards/>
+      <Cards/>
+      </div>
         <Box my={2}>
         
         </Box>

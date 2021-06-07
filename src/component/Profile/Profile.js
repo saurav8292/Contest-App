@@ -1,65 +1,124 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
+import img from "../stories/Assets/waterfall.jpg"
+
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Fab from '@material-ui/core/Fab';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import Zoom from '@material-ui/core/Zoom';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`nav-tabpanel-${index}`}
+      aria-labelledby={`nav-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `nav-tab-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
+  };
+}
+
+function LinkTab(props) {
+  return (
+    <Tab
+      component="a"
+      onClick={(event) => {
+        event.preventDefault();
+      }}
+      {...props}
+    />
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 
-function ScrollTop(props) {
-  const { children, window } = props;
-  const classes = useStyles();
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
+const Profile = () =>
+{
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
+  
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+  
+    return (
+        <div style={{maxWidth:"550px",margin:"0px auto"}}>
+        <div style={{
+           margin:"58px 0px",
+            borderBottom:"1px solid grey"
+        }}>     
+        <div style={{
+            display:"flex",
+            justifyContent:"space-around",
+        }}>
+            <div>
+                <img style={{width:"160px",height:"160px",borderRadius:"80px"}}src={img} alt="Loading..."/>
+            </div>
+            </div>
 
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+            <div>
+            <Link>Edit Profile</Link>
+            <h4>Virat Kohli</h4>
+            <h6> Lives in  City, State, Country</h6>
+            </div>
 
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
+            </div>
 
-  return (
-    <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.root}>
-        {children}
-      </div>
-    </Zoom>
-  );
+             <div className={classes.root}>
+      <AppBar position="static" style={{backgroundColor:"white"}}>
+        <Tabs
+          variant="fullWidth"
+          value={value}
+          onChange={handleChange}
+          aria-label="nav tabs example"
+        >
+          <LinkTab label="Posts" href="/drafts" {...a11yProps(0)} style={{color:"grey"}}/>
+          <LinkTab label="Bookmarks" href="/trash" {...a11yProps(1)} style={{color:"grey"}}/>
+          <LinkTab label="Participated" href="/spam" {...a11yProps(2)} style={{color:"grey"}}/>
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+        Page One
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Page Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Page Three
+      </TabPanel>
+    </div>
+
+            </div>
+    )
 }
-
-ScrollTop.propTypes = {
-  children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
-
-export default function Profile(props) {
-  return (
-    <div>HI THere</div>
-  );
-}
+export default Profile

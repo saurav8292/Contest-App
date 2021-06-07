@@ -1,0 +1,26 @@
+.cardss
+{
+    padding-left: 20%;
+}
+
+@media screen and (max-width: 1250px)
+{
+    .cardss
+    {
+        padding-left: 15%;
+    }
+}
+@media screen and (max-width: 1150px)
+{
+    .cardss
+    {
+        padding-left: 8%;
+    }
+}
+@media screen and (max-width: 1000px)
+{
+    .cardss
+    {
+        padding-left: 5%;
+    }
+}
