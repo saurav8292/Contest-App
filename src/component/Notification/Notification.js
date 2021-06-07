@@ -1,8 +1,10 @@
-import React from 'react';
-const Notification= () =>
+import React from 'react'
+const Notification = () =>
 {
     return (
-        <div> HI THERE</div>
+        <div>
+        <div style={{margin:"30px"}}> Coming Soon</div>
+        </div>
     )
 }
 export default Notification;
