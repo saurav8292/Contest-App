@@ -1,0 +1,68 @@
+#mod
+{
+    margin-left: 42%;
+    margin-top: 200px;
+}
+.slinks1
+{
+    color:mediumblue;
+    margin-left: 30px;
+    font-size: 1.2em;
+}
+.slinks2
+{
+    color: red;
+    margin-left: 26px;
+    font-size: 1.2em;
+}
+.slinks3
+{
+    margin-left: 50px;
+    font-size: 1.2em;
+}
+.chng
+{
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+@media screen and (max-width:800px)
+{
+ #mod{
+ margin-left:36%;
+ }   
+}
+
+@media screen and (max-width:600px)
+{
+ #mod{
+ margin-left:30%;
+ }   
+}
+@media screen and (max-width:500px)
+{
+ #mod{
+ margin-left:20%;
+ margin-top:180px;
+ }   
+}
+@media screen and (max-width:400px)
+{
+ #mod{
+ margin-left:15%;
+ margin-top:180px;
+ }   
+}
+@media screen and (max-width:350px)
+{
+ #mod{
+ margin-left:10%;
+ margin-top:180px;
+ }   
+}
+@media screen and (max-width:300px)
+{
+ #mod{
+ margin-left:15px;
+ margin-top:180px;
+ }   
+}

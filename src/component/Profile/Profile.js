@@ -13,7 +13,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import IconButton from '@material-ui/core/IconButton';
-
+import SimpleModal from "./SimpleModals/SimpleModal";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -90,7 +90,7 @@ const Profile = () =>
     };
     const MyOptions = [
       <Link to="/ProfileUpdate">Edit Profile</Link>,
-      "Change Photo",
+      <SimpleModal/>,
       "Change Password",
       "Logout"
     ];
