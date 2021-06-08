@@ -44,7 +44,7 @@ export default function SimpleModal() {
 
   return (
     <div>
-    <Link onClick={handleOpen}>CHnage Photo</Link>
+    <Link onClick={handleOpen}>Change Photo</Link>
       <Modal
         open={open}
         onClose={handleClose}
