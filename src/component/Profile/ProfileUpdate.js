@@ -3,7 +3,9 @@ import React from 'react'
 const ProfileUpdate = () =>
 {
     return(
-        <div style={{margin:"100px"}}>HELLO update me</div>
+        <div style={{margin:"60px"}}>
+        
+        </div>
     )
 }
 export default ProfileUpdate;

@@ -87,9 +87,9 @@ export default function Navbar() {
           aria-label="nav tabs example"
         >
           <Tab component={Link} to="/Stories" icon={<CreditCardIcon/>}  {...a11yProps(0)} style={{color:"white"}}/>
-          <Tab component={Link} to="/Trending" icon={<LiveTvIcon/>} href="/trash" {...a11yProps(1)} style={{color:"white"}} />
-          <Tab component={Link} to="/Notification" icon={<Badge badgeContent={4} color="red" backgroundColor="white"><NotificationsActiveSharpIcon/></Badge>} href="/spam" {...a11yProps(2)} style={{color:"white"}}/>
-          <Tab component={Link} to="/Profile" icon={<PersonSharpIcon/>} href="/spam" {...a11yProps(3)} style={{color:"white"}}/>
+          <Tab component={Link} to="/Trending" icon={<LiveTvIcon/>}  {...a11yProps(1)} style={{color:"white"}} />
+          <Tab component={Link} to="/Notification" icon={<Badge badgeContent={4} color="red" backgroundColor="white"><NotificationsActiveSharpIcon/></Badge>}  {...a11yProps(2)} style={{color:"white"}}/>
+          <Tab component={Link} to="/Profile" icon={<PersonSharpIcon/>}  {...a11yProps(3)} style={{color:"white"}}/>
         </Tabs>
       </AppBar>
 

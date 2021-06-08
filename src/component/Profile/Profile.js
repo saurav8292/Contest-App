@@ -87,7 +87,7 @@ const Profile = () =>
             </div>
 
             <div style={{margin:"9px 0px"}}>
-            <Link to="/ProfileUpdate" style={{margin:"0px 0px 10px 0px"}}><button style={{backgroundColor:"lightgrey"}}>Edit Profile</button></Link>
+            <Link to="/ProfileUpdate" style={{margin:"0px 0px 10px 0px"}}><button style={{backgroundColor:"lightgrey",borderRadius:"5px"}}>Edit Profile</button></Link>
             <p style={{margin:"3px 0px",fontFamily:"sans-serif",fontWeight:"550",fontSize:"1.5em"}}>Virat Kohli</p>
             <h6> Lives in  City, State, Country</h6>
             </div>
