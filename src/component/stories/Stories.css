@@ -24,3 +24,17 @@
         padding-left: 5%;
     }
 }
+@media screen and (max-width: 7000px)
+{
+    .cardss
+    {
+        padding-left: 3%;
+    }
+}
+@media screen and (max-width: 500px)
+{
+    .cardss
+    {
+        padding-left: 0%;
+    }
+}
