@@ -16,6 +16,7 @@ import Notification from '../Notification/Notification'
 import Badge from '@material-ui/core/Badge';
 import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
 import ProfileUpdate from "../Profile/ProfileUpdate/ProfileUpdate"
+import ChangePassword from "../Profile/ChangePassword/ChangePassword"
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -49,17 +50,7 @@ function a11yProps(index) {
   };
 }
 
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -100,6 +91,7 @@ export default function Navbar() {
        <Route path="/Notification" component={Notification}/>
        <Route path="/Profile" component={Profile}/>
       <Route path="/ProfileUpdate" component={ProfileUpdate}/>
+      <Route path="/ChangePassword" component={ChangePassword}/>
     </Switch>
     </BrowserRouter>
     </div>

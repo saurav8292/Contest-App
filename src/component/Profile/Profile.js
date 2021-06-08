@@ -91,7 +91,7 @@ const Profile = () =>
     const MyOptions = [
       <Link to="/ProfileUpdate">Edit Profile</Link>,
       <SimpleModal/>,
-      "Change Password",
+      <Link to="/ChangePassword">Change Password</Link>,
       "Logout"
     ];
   
