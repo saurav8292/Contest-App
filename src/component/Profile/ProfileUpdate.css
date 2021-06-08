@@ -1,0 +1,12 @@
+.dob
+{
+    margin-top: 40px;
+    margin-left: 5px;
+}
+@media screen and (max-width:991px)
+{
+    .dob
+    {
+      margin-top:12px;
+    }
+}

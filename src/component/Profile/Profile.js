@@ -9,6 +9,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import IconButton from '@material-ui/core/IconButton';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,10 +70,30 @@ const Profile = () =>
 {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
   
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    
+    
+  
+    const open = Boolean(anchorEl);
+    
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    const MyOptions = [
+      <Link to="/ProfileUpdate">Edit Profile</Link>,
+      "Change Photo",
+      "Change Password",
+      "Logout"
+    ];
   
     return (
         <div style={{maxWidth:"550px",margin:"0px auto"}}>
@@ -81,13 +105,35 @@ const Profile = () =>
             display:"flex",
             justifyContent:"space-around",
         }}>
-            <div>
+            <div></div>
+            <div style={{marginRight:"-45px"}}>
                 <img style={{width:"160px",height:"160px",borderRadius:"80px"}}src={img} alt="Loading..."/>
+            </div>
+            <div>
+            <IconButton
+        aria-label="more"
+        onClick={handleClick}
+        aria-haspopup="true"
+        aria-controls="long-menu"
+      >
+        <MoreVertIcon />
+      </IconButton>
+      <Menu 
+        anchorEl={anchorEl} 
+        keepMounted onClose={handleClose} 
+        open={open}>
+        {MyOptions.map((option) => (
+          <MenuItem
+            key={option} 
+            onClick={handleClose}>
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
             </div>
             </div>
 
             <div style={{margin:"9px 0px"}}>
-            <Link to="/ProfileUpdate" style={{margin:"0px 0px 10px 0px"}}><button style={{backgroundColor:"lightgrey",borderRadius:"5px"}}>Edit Profile</button></Link>
             <p style={{margin:"3px 0px",fontFamily:"sans-serif",fontWeight:"550",fontSize:"1.5em"}}>Virat Kohli</p>
             <h6> Lives in  City, State, Country</h6>
             </div>
@@ -117,8 +163,7 @@ const Profile = () =>
         Page Three
       </TabPanel>
     </div>
-
-            </div>
+    </div>
     )
 }
 export default Profile
