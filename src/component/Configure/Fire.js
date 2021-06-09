@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 var firebaseConfig = {
     apiKey: "AIzaSyDX3gnW3DMUz-ZK5JqroMf2t3dp9nFgX4M",
@@ -13,4 +13,4 @@ var firebaseConfig = {
   export const auth = Fire.auth();
   export const storage=Fire.storage();
   export const db = Fire.firestore();
-  export default Fire;
+  
