@@ -10,13 +10,8 @@ import NotificationsActiveSharpIcon from '@material-ui/icons/NotificationsActive
 import PersonSharpIcon from '@material-ui/icons/PersonSharp';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
-import Stories from '../stories/Stories'
-import Profile from '../Profile/Profile'
-import Notification from '../Notification/Notification'
 import Badge from '@material-ui/core/Badge';
-import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
-import ProfileUpdate from "../Profile/ProfileUpdate/ProfileUpdate"
-import ChangePassword from "../Profile/ChangePassword/ChangePassword"
+import {Link} from "react-router-dom";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -69,7 +64,6 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-    <BrowserRouter>
       <AppBar position="fixed" style={{backgroundColor:"#00838F"}}>
         <Tabs
           variant="fullWidth"
@@ -83,17 +77,6 @@ export default function Navbar() {
           <Tab component={Link} to="/Profile" icon={<PersonSharpIcon/>}  {...a11yProps(3)} style={{color:"white"}}/>
         </Tabs>
       </AppBar>
-
-      <Switch>
-      <Route exact path="/" component={Stories}/>
-      <Route path="/Stories" component={Stories} />
-      <Route path="/Trending" component={Stories} />
-       <Route path="/Notification" component={Notification}/>
-       <Route path="/Profile" component={Profile}/>
-      <Route path="/ProfileUpdate" component={ProfileUpdate}/>
-      <Route path="/ChangePassword" component={ChangePassword}/>
-    </Switch>
-    </BrowserRouter>
     </div>
   );
 }

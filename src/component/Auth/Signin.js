@@ -22,10 +22,10 @@ const container = document.querySelector(".container");
   }
     return (
         
-    <div className="container">
-    <div className="forms-container">
+    <div className="container ct">
+    <div className="forms-container fct">
       <div className="signin-signup">
-        <form action="#" class="sign-in-form">
+        <form action="#" className="sign-in-form">
           <h2 className="title">Sign in</h2>
           <div className="input-field">
             <i className="fas fa-user"></i>
