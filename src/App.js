@@ -12,6 +12,7 @@ import ChangePassword from './component/Profile/ChangePassword/ChangePassword'
 import Notification from './component/Notification/Notification'
 import Navbar from "./component/Navbar/Navbar"
 import ForgotPassword from "./component/Auth/ForgotPassword"
+import FirstUpdate from './component/Auth/FirstUpdate';
 const App=()=>
 {
     return (
@@ -28,6 +29,7 @@ const App=()=>
       <PrivateRoute path="/ChangePassword" component={ChangePassword}/>
       <Route path="/login" component={Login}/>
       <Route path="/signup" component={Signup}/>
+      <Route path="/FirstUpdate" component={FirstUpdate}/>
       <Route path="/Forgot-password" component={ForgotPassword}/>
     </Switch>
       </div>
