@@ -1,5 +1,6 @@
 import React from 'react';
-import Signin from './component/Auth/Signin'
+import Login from './component/Auth/Login'
+import Signup from './component/Auth/Signup';
 import PrivateRoute from "./component/PrivateRoute"
 import './App.css';
 import { AuthProvider } from "./Context/AuthContext";
@@ -16,6 +17,7 @@ const App=()=>
     return (
       <AuthProvider>
       <div className="App">
+      <Navbar/>
       <Switch>
       <PrivateRoute exact path="/" component={Navbar}/>
       <PrivateRoute path="/Stories" component={Stories} />
@@ -24,7 +26,8 @@ const App=()=>
       <PrivateRoute path="/Profile" component={Profile}/>
       <PrivateRoute path="/ProfileUpdate" component={ProfileUpdate}/>
       <PrivateRoute path="/ChangePassword" component={ChangePassword}/>
-      <Route path="/Signin" component={Signin}/>
+      <Route path="/login" component={Login}/>
+      <Route path="/signup" component={Signup}/>
       <Route path="/Forgot-password" component={ForgotPassword}/>
     </Switch>
       </div>

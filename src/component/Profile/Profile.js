@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React,{useState} from 'react';
+import {Link,useHistory} from 'react-router-dom'
 import img from "../stories/Assets/waterfall.jpg"
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,6 +13,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import IconButton from '@material-ui/core/IconButton';
 import SimpleModal from "./SimpleModals/SimpleModal";
+import { Button } from 'react-bootstrap';
+import { useAuth } from "../../Context/AuthContext"
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -70,6 +73,11 @@ const Profile = () =>
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
+    const [error, setError] = useState("")
+  const { currentUser, logout } = useAuth()
+  const history = useHistory()
+
+
     const [anchorEl, setAnchorEl] = React.useState(null);
   
     const handleChange = (event, newValue) => {
@@ -80,7 +88,16 @@ const Profile = () =>
       setAnchorEl(event.currentTarget);
     };
     
-    
+    async function handleLogout() {
+      setError("")
+  
+      try {
+        await logout()
+        history.push("/login")
+      } catch {
+        setError("Failed to log out")
+      }
+    }
   
     const open = Boolean(anchorEl);
     
@@ -91,7 +108,7 @@ const Profile = () =>
       <Link to="/ProfileUpdate">Edit Profile</Link>,
       <SimpleModal/>,
       <Link to="/ChangePassword">Change Password</Link>,
-      "Logout"
+      <Button onClick={handleLogout}>Logout user</Button>
     ];
   
     return (
