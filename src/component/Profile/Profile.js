@@ -72,14 +72,10 @@ const Profile = () =>
 {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-
     const [error, setError] = useState("")
-  const { currentUser, logout } = useAuth()
-  const history = useHistory()
-
-
+    const { currentUser, logout } = useAuth()
+    const history = useHistory()
     const [anchorEl, setAnchorEl] = React.useState(null);
-  
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
