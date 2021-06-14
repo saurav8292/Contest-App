@@ -18,19 +18,21 @@ const App=()=>
     return (
       <AuthProvider>
       <div className="App">
-      <Navbar/>
       <Switch>
-      <PrivateRoute exact path="/" component={Navbar}/>
+      <Route exact path="/" component={Login}/>
+      <Route path="/login" component={Login}/>
+      <Route path="/signup" component={Signup}/>
+      <Route path="/FirstUpdate" component={FirstUpdate}/>
+      <Route path="/Forgot-password" component={ForgotPassword}/>
+      <>
+      <Navbar/>
       <PrivateRoute path="/Stories" component={Stories} />
       <PrivateRoute path="/Trending" component={Stories} />
       <PrivateRoute path="/Notification" component={Notification}/>
       <PrivateRoute path="/Profile" component={Profile}/>
       <PrivateRoute path="/ProfileUpdate" component={ProfileUpdate}/>
       <PrivateRoute path="/ChangePassword" component={ChangePassword}/>
-      <Route path="/login" component={Login}/>
-      <Route path="/signup" component={Signup}/>
-      <Route path="/FirstUpdate" component={FirstUpdate}/>
-      <Route path="/Forgot-password" component={ForgotPassword}/>
+      </>
     </Switch>
       </div>
       </AuthProvider>

@@ -18,7 +18,7 @@ export default function ForgotPassword() {
       setError("")
       setLoading(true)
       await resetPassword(emailRef.current.value)
-      setMessage("Check your inbox for further instructions")
+      setMessage("Kindly check your email")
     } catch {
       setError("Failed to reset password")
     }
@@ -43,12 +43,12 @@ export default function ForgotPassword() {
             </Button>
           </Form>
           <div className="w-100 text-center mt-3">
-            <Link to="/Signin">Login</Link>
+            <Link to="/login">Login</Link>
           </div>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/Signin">Sign Up</Link>
+        Need an account? <Link to="/signup">Sign Up</Link>
       </div>
     </>
   )
