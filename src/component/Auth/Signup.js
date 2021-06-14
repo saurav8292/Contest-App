@@ -16,7 +16,7 @@ export default function Signup() {
     e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match")
+      return setError("Passwords do not match Try Again")
     }
 
     try {
@@ -25,7 +25,7 @@ export default function Signup() {
       await signup(emailRef.current.value, passwordRef.current.value)
       history.push("/FirstUpdate")
     } catch {
-      setError("Failed to create an account")
+      setError("This Email is already registerd Please Log in to continue..")
     }
 
     setLoading(false)

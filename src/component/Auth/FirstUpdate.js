@@ -21,15 +21,6 @@ const FirstUpdate = () =>
           </div>
           
           <div className="col-md-4 mb-3">
-          <label style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>Email</label>
-          <input type="text" 
-          className="form-control"  
-          name ="email"
-          placeholder="Email" 
-          /> 
-          </div>
-
-          <div className="col-md-4 mb-3">
           <label style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>City</label>
           <input type="text" 
           className="form-control"  
