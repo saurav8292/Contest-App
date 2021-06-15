@@ -4,7 +4,7 @@ import { useAuth } from "../../Context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import "./Signin.css"
 import loginIcon from './images/avtar.png'
-import uiImg from './images/snap.png'
+import uiImg from './images/first.png'
 
 export default function Login() {
   const emailRef = useRef()
@@ -39,11 +39,11 @@ export default function Login() {
                 <img className="icon-img" src={loginIcon} alt="icon"/>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Enter email" ref={emailRef} />
+                        <Form.Control type="email" placeholder="Enter email" ref={emailRef} required/>
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
-                        <Form.Control type="password" placeholder="Password" ref={passwordRef} />
+                        <Form.Control type="password" placeholder="Password" ref={passwordRef} required/>
                     </Form.Group>
 
                     <Button disabled={loading} variant="primary btn-block pk" type="submit">Login</Button>

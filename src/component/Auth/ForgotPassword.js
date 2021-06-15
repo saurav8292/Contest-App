@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
+import { Form, Button, Card, Alert,Container,Col,Row} from "react-bootstrap"
 import { useAuth } from "../../Context/AuthContext"
 import { Link } from "react-router-dom"
-
+import loginIcon from './images/avtar.png'
+import uiImg from './images/setup.png'
 export default function ForgotPassword() {
   const emailRef = useRef()
   const { resetPassword } = useAuth()
@@ -28,28 +29,33 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Password Reset</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          {message && <Alert variant="success">{message}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
-            </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
-              Reset Password
-            </Button>
-          </Form>
-          <div className="w-100 text-center mt-3">
-            <Link to="/login">Login</Link>
+    <Container className="mt-5" style={{background:"white"}}>
+    {error && <Alert variant="danger">{error}</Alert>}
+        <Row>
+            <Col lg={4} md={6} sm={12} className="text-center mt-5 p-3">
+            <h3 style={{color:"#00008b"}}>Welcome Back</h3>
+                <img className="icon-img" src={loginIcon} alt="icon"/>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control type="email" placeholder="Enter email" ref={emailRef} required/>
+                    </Form.Group>
+
+                    <Button disabled={loading} variant="primary btn-block pk" type="submit">Reset PassWord</Button>
+                </Form>
+                <div className="w-100 text-center mt-3">
+            Log In Now <Link to="/login">Log In</Link>
           </div>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
+          <div className="w-100 text-center mt-2">
+          Need an account? <Link to="/signup">Sign Up</Link>
+        </div>
+            </Col>
+
+            <Col lg={8} md={6} sm={12}>
+                <img className="w-100" src={uiImg} alt=""/>
+            </Col>
+        </Row>
+        
+    </Container>
     </>
   )
 }

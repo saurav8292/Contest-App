@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
+import { Form, Button, Card, Alert,Container,Row,Col} from "react-bootstrap"
 import { useAuth } from "../../Context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import loginIcon from './images/avtar.png'
+import uiImg from './images/snap.png'
 
 export default function Signup() {
   const emailRef = useRef()
@@ -34,32 +36,40 @@ export default function Signup() {
 
   return (
     <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
-            </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
-            </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="password" ref={passwordConfirmRef} required />
-            </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
-              Sign Up
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        Already have an account? <Link to="/login">Log In</Link>
-      </div>
+    <Container className="mt-5" style={{background:"white"}}>
+    {error && <Alert variant="danger">{error}</Alert>}
+        <Row>
+            <Col lg={4} md={6} sm={12} className="text-center mt-5 p-3" >
+            <h3 style={{color:"#00008b"}}>Welcome</h3>
+                <img className="icon-img" src={loginIcon} alt="icon"/>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control type="email" placeholder="Enter email" ref={emailRef} required/>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Control type="password" placeholder="Password (must be atleast of 6 characters)" ref={passwordRef} required/>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                    <Form.Control type="password" placeholder="Confirm Password" ref={passwordConfirmRef} required/>
+                </Form.Group>
+
+                    <Button disabled={loading} variant="primary btn-block pk" type="submit">Login</Button>
+                </Form>
+                <div className="w-100 text-center mt-3">
+          </div>
+          <div className="w-100 text-center mt-2">
+          Need an account? <Link to="/login">Log In</Link>
+        </div>
+            </Col>
+
+            <Col lg={8} md={6} sm={12}>
+                <img className="w-100" src={uiImg} alt=""/>
+            </Col>
+        </Row>
+        
+    </Container>
     </>
   )
 }
