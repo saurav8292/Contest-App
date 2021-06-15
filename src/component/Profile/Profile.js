@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Link,useHistory} from 'react-router-dom'
 import img from "../stories/Assets/waterfall.jpg"
 import PropTypes from 'prop-types';
@@ -15,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SimpleModal from "./SimpleModals/SimpleModal";
 import { Button } from 'react-bootstrap';
 import { useAuth } from "../../Context/AuthContext"
+import { db } from ".././Configure/Fire";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -76,6 +77,11 @@ const Profile = () =>
     const { currentUser, logout } = useAuth()
     const history = useHistory()
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [uname,setname]=useState("")
+    const [ucity,setcity]=useState("")
+    const [ustate,setstate]=useState("")
+    const [ucountry,setcountry]=useState("")
+
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
@@ -94,6 +100,16 @@ const Profile = () =>
         setError("Failed to log out")
       }
     }
+    const getDataFromDb = async () => {
+      const snap = await db.collection("users").doc(currentUser.uid).get();
+      setname(snap.data()["name"]);
+      setcity(snap.data()["city"]);
+      setstate(snap.data()["state"]);
+      setcountry(snap.data()["country"])
+    };
+    useEffect(() => {
+      getDataFromDb();
+    }, []);
   
     const open = Boolean(anchorEl);
     
@@ -146,8 +162,8 @@ const Profile = () =>
             </div>
 
             <div style={{margin:"9px 0px"}}>
-            <p style={{margin:"3px 0px",fontFamily:"sans-serif",fontWeight:"550",fontSize:"1.5em"}}>Virat Kohli</p>
-            <h6> Lives in  City, State, Country</h6>
+            <p style={{margin:"3px 0px",fontFamily:"sans-serif",fontWeight:"550",fontSize:"1.5em"}}>{uname}</p>
+            <h6> Lives In {ucity},{ustate},{ucountry}</h6>
             </div>
              
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import "./ProfileUpdate.css";
 import Button from "@material-ui/core/Button";
 import { db } from "../../Configure/Fire";
@@ -31,16 +31,7 @@ const ProfileUpdate = () => {
       history.push('/Profile');
     },1000);
   };
-  const getDataFromDb = async () => {
-    const snap = await db.collection("users").doc(currentUser.uid).get();
-    const name = snap.data()["name"];
-    const city =snap.data()["city"];
-    console.log(city);
-    console.log(name);
-  };
-  useEffect(() => {
-    getDataFromDb();
-  }, []);
+
 
   return (
     <div className="container" style={{ marginTop: "70px" }}>
