@@ -29,110 +29,77 @@ const ProfileUpdate = () => {
     setMessage("Profile Updated!");
     setTimeout(()=>{
       history.push('/Profile');
-    },1000);
+    },1100);
   };
 
 
   return (
     <div className="container" style={{ marginTop: "70px" }}>
-    <form>
-      <div className="form-row">
-        <div className="col-md-4 mb-3">
-          <label
-            style={{
-              float: "left",
-              fontSize: "1.2em",
-              fontWeight: "600px",
-              marginLeft: "2px",
-            }}
-          >
-            Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            value={uname}
-            placeholder="Name"
-            onChange={(e)=>setname(e.target.value)}
-          />
-        </div>
+    <form onSubmit={uploadTODB}>
+    <div className="form-row">
 
-       
-
-        <div className="col-md-4 mb-3">
-          <label
-            style={{
-              float: "left",
-              fontSize: "1.2em",
-              fontWeight: "600px",
-              marginLeft: "2px",
-            }}
-          >
-            City
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="city"
-            placeholder="City"
-            value={ucity}
-            onChange={(e)=>setcity(e.target.value)}
-          />
-        </div>
-
-        <div className="col-md-4 mb-3">
-          <label
-            style={{
-              float: "left",
-              fontSize: "1.2em",
-              fontWeight: "600px",
-              marginLeft: "2px",
-            }}
-          >
-            State
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="state"
-            placeholder="State"
-            value={ustate}
-            onChange={(e)=>setstate(e.target.value)}
-          />
-        </div>
-
-        <div className="col-md-4 mb-3">
-          <label
-            style={{
-              float: "left",
-              fontSize: "1.2em",
-              fontWeight: "600px",
-              marginLeft: "2px",
-            }}
-          >
-            Country
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="country"
-            placeholder="Country"
-            value={ucountry}
-            onChange={(e)=>setcountry(e.target.value)}
-          />
-        </div>
+      <div className="col-md-4 mb-3">
+      <label for="validationDefault01">Full Name</label>
+      <input 
+      type="text" 
+      class="form-control" 
+      id="validationDefault01" 
+      placeholder="Full name" 
+      value={uname} 
+      onChange={(e)=>setname(e.target.value)} 
+      required/>
       </div>
 
-      <Button
-        variant="contained"
-        onClick={uploadTODB}
-        color="primary"
-        style={{ marginTop: "10px" }}
-      >
-        Submit
-      </Button>
-      </form>
+
+
+      <div className="col-md-4 mb-3">
+      <label for="validationDefault03">City</label>
+      <input 
+      type="text" 
+      class="form-control" 
+      id="validationDefault03" 
+      placeholder="City" 
+      value={ucity}  
+      onChange={(e)=>setcity(e.target.value)}
+      required/>
+    </div>
+
+
+
+    <div className="col-md-4 mb-3">
+    <label for="validationDefault04">State</label>
+    <input 
+    type="text" 
+    class="form-control" 
+    id="validationDefault04" 
+    placeholder="State"  
+    value={ustate}  
+    onChange={(e)=>setstate(e.target.value)}
+    required/>
+    </div>
+
+
+    </div>
+
+
+    <div className="form-row">
+
+    <div className="col-md-4 mb-3">
+    <label for="validationDefault05">Country</label>
+    <input 
+    type="text" 
+    className="form-control" 
+    id="validationDefault05" 
+    placeholder="country" 
+    value={ucountry}  
+    onChange={(e)=>setcountry(e.target.value)}
+    required/>
+    </div>
+    </div>
+
+
+    <button className="btn btn-dark" type="submit">Submit form</button>
+  </form>
       <h4>{message}</h4>
     </div>
   );
