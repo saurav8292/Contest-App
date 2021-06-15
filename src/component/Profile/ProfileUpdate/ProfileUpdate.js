@@ -1,6 +1,5 @@
 import React, {useState } from "react";
 import "./ProfileUpdate.css";
-import Button from "@material-ui/core/Button";
 import { db } from "../../Configure/Fire";
 import { useAuth } from "../../../Context/AuthContext";
 import { useHistory } from 'react-router';
@@ -42,7 +41,7 @@ const ProfileUpdate = () => {
       <label for="validationDefault01">Full Name</label>
       <input 
       type="text" 
-      class="form-control" 
+      className="form-control" 
       id="validationDefault01" 
       placeholder="Full name" 
       value={uname} 
@@ -56,7 +55,7 @@ const ProfileUpdate = () => {
       <label for="validationDefault03">City</label>
       <input 
       type="text" 
-      class="form-control" 
+      className="form-control" 
       id="validationDefault03" 
       placeholder="City" 
       value={ucity}  
@@ -70,7 +69,7 @@ const ProfileUpdate = () => {
     <label for="validationDefault04">State</label>
     <input 
     type="text" 
-    class="form-control" 
+    className="form-control" 
     id="validationDefault04" 
     placeholder="State"  
     value={ustate}  
