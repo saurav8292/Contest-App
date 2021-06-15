@@ -38,7 +38,7 @@ const ProfileUpdate = () => {
     <div className="form-row">
 
       <div className="col-md-4 mb-3">
-      <label for="validationDefault01">Full Name</label>
+      <label for="validationDefault01" style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>Full Name</label>
       <input 
       type="text" 
       className="form-control" 
@@ -52,7 +52,7 @@ const ProfileUpdate = () => {
 
 
       <div className="col-md-4 mb-3">
-      <label for="validationDefault03">City</label>
+      <label for="validationDefault03" style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>City</label>
       <input 
       type="text" 
       className="form-control" 
@@ -66,7 +66,7 @@ const ProfileUpdate = () => {
 
 
     <div className="col-md-4 mb-3">
-    <label for="validationDefault04">State</label>
+    <label for="validationDefault04" style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>State</label>
     <input 
     type="text" 
     className="form-control" 
@@ -84,7 +84,7 @@ const ProfileUpdate = () => {
     <div className="form-row">
 
     <div className="col-md-4 mb-3">
-    <label for="validationDefault05">Country</label>
+    <label for="validationDefault05" style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>Country</label>
     <input 
     type="text" 
     className="form-control" 
@@ -97,7 +97,7 @@ const ProfileUpdate = () => {
     </div>
 
 
-    <button className="btn btn-dark" type="submit">Submit form</button>
+    <button className="btn btn-dark" type="submit" style={{background:"#00838F"}}>Submit form</button>
   </form>
       <h4>{message}</h4>
     </div>
