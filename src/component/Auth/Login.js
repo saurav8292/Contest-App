@@ -4,7 +4,7 @@ import { useAuth } from "../../Context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import "./Signin.css"
 import loginIcon from './images/avtar.png'
-import uiImg from './images/setup.png'
+import uiImg from './images/snap.png'
 
 export default function Login() {
   const emailRef = useRef()
@@ -31,11 +31,11 @@ export default function Login() {
 
   return (
     <>
-    <>
-    <Container className="mt-5">
+    <Container className="mt-5" style={{background:"white"}}>
     {error && <Alert variant="danger">{error}</Alert>}
         <Row>
             <Col lg={4} md={6} sm={12} className="text-center mt-5 p-3">
+            <h3 style={{color:"#00008b"}}>Welcome Back</h3>
                 <img className="icon-img" src={loginIcon} alt="icon"/>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formBasicEmail">
@@ -62,7 +62,6 @@ export default function Login() {
         </Row>
         
     </Container>
-</>
     </>
   )
 }
