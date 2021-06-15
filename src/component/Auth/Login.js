@@ -1,7 +1,10 @@
 import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
+import { Button, Col,Container,Form,Row,Alert} from "react-bootstrap"
 import { useAuth } from "../../Context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import "./Signin.css"
+import loginIcon from './images/avtar.png'
+import uiImg from './images/setup.png'
 
 export default function Login() {
   const emailRef = useRef()
@@ -28,31 +31,38 @@ export default function Login() {
 
   return (
     <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Log In</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
-            </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
-            </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
-              Log In
-            </Button>
-          </Form>
-          <div className="w-100 text-center mt-3">
+    <>
+    <Container className="mt-5">
+    {error && <Alert variant="danger">{error}</Alert>}
+        <Row>
+            <Col lg={4} md={6} sm={12} className="text-center mt-5 p-3">
+                <img className="icon-img" src={loginIcon} alt="icon"/>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control type="email" placeholder="Enter email" ref={emailRef} />
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Control type="password" placeholder="Password" ref={passwordRef} />
+                    </Form.Group>
+
+                    <Button disabled={loading} variant="primary btn-block pk" type="submit">Login</Button>
+                </Form>
+                <div className="w-100 text-center mt-3">
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
+          <div className="w-100 text-center mt-2">
+          Need an account? <Link to="/signup">Sign Up</Link>
+        </div>
+            </Col>
+
+            <Col lg={8} md={6} sm={12}>
+                <img className="w-100" src={uiImg} alt=""/>
+            </Col>
+        </Row>
+        
+    </Container>
+</>
     </>
   )
 }
