@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import { Link } from "react-router-dom";
 import "./modals.css";
 import Divider from "@material-ui/core/Divider";
-import { db, storage } from "../../Configure/Fire";
+import { storage } from "../../Configure/Fire";
 import { useAuth } from "../../../Context/AuthContext";
 import { useHistory } from "react-router";
 import { Button } from "react-bootstrap";
@@ -52,15 +52,15 @@ export default function SimpleModal() {
     finput.click();
   };
   const uploadImage = async () => {
-    const ref = storage.ref("/kishan");
+    const ref = storage.ref(currentUser.uid);
     const uploader = ref.put(image);
 
     uploader.on("complete", (d) => {
-      console.log("Upload Done");
-      console.log(d);
+      console.log("Upload done");
       const url = ref.getDownloadURL();
       console.log(url);
     });
+    handleClose();
   };
   const body = (
     <div className={classes.paper} id="mod">
@@ -106,3 +106,4 @@ export default function SimpleModal() {
     </div>
   );
 }
+
