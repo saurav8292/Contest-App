@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert,Container,Col,Row} from "react-bootstrap"
+import { Form, Button,Alert,Container,Col,Row} from "react-bootstrap"
 import { useAuth } from "../../Context/AuthContext"
 import { Link } from "react-router-dom"
 import loginIcon from './images/avtar.png'
