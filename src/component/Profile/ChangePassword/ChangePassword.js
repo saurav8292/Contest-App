@@ -1,165 +1,87 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import React, { useRef, useState } from "react"
+import { Form, Button, Card, Alert } from "react-bootstrap"
+import { useAuth } from "../../../Context/AuthContext"
+import { Link, useHistory } from "react-router-dom"
 import "./ChangePassword.css"
-import Button from '@material-ui/core/Button';
+export default function UpdateProfile() {
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const passwordConfirmRef = useRef()
+  const { currentUser, updatePassword, updateEmail } = useAuth()
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const history = useHistory()
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  textField: {
-    width: '450px',
-  },
-}));
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Passwords do not match")
+    }
 
-export default function ChangePassword() {
-  const classes1 = useStyles();
-  const [values1, setValues1] = React.useState({
-    password1: '',
-    showPassword1: false,
-  });
-  const handleChange1 = (prop) => (event) => {
-    setValues1({ ...values1, [prop]: event.target.value });
-  };
-  const handleClickShowPassword1 = () => {
-    setValues1({ ...values1, showPassword1: !values1.showPassword1 });
-  };
-  const handleMouseDownPassword1 = (event) => {
-    event.preventDefault();
-  };
+    const promises = []
+    setLoading(true)
+    setError("")
 
-  const classes2 = useStyles();
-  const [values2, setValues2] = React.useState({
-    password2: '',
-    showPassword2: false,
-  });
-  const handleChange2 = (prop) => (event) => {
-    setValues2({ ...values2, [prop]: event.target.value });
-  };
-  const handleClickShowPassword2 = () => {
-    setValues2({ ...values2, showPassword2: !values2.showPassword2 });
-  };
-  const handleMouseDownPassword2 = (event) => {
-    event.preventDefault();
-  };
+    if (emailRef.current.value !== currentUser.email) {
+      promises.push(updateEmail(emailRef.current.value))
+    }
+    if (passwordRef.current.value) {
+      promises.push(updatePassword(passwordRef.current.value))
+    }
 
-  const classes = useStyles();
-  const [values, setValues] = React.useState({
-    password: '',
-    showPassword: false,
-  });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+    Promise.all(promises)
+      .then(() => {
+        history.push("/")
+      })
+      .catch(() => {
+        setError("Failed to update account")
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
 
   return (
-    <div className={classes.root} style={{marginTop:"70px"}}>
-      <div className="container">
-
-      <div className="form-row frms">
-        <FormControl className={clsx(classes1.margin, classes1.textField)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password1">Current Password</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password1"
-            type={values1.showPassword1 ? 'text' : 'password'}
-            value={values1.password1}
-            onChange={handleChange1('password1')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password1 visibility"
-                  onClick={handleClickShowPassword1}
-                  onMouseDown={handleMouseDownPassword1}
-                  edge="end"
-                >
-                  {values1.showPassword1 ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={130}
-          />
-        </FormControl>
-        </div>
-          
-        <div className="form-row frms">
-        <FormControl className={clsx(classes2.margin, classes2.textField)} variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password2">New Password</InputLabel>
-        <OutlinedInput
-          id="outlined-adornment-password2"
-          type={values2.showPassword2 ? 'text' : 'password'}
-          value={values2.password2}
-          onChange={handleChange2('password2')}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password2 visibility"
-                onClick={handleClickShowPassword2}
-                onMouseDown={handleMouseDownPassword2}
-                edge="end"
-              >
-                {values2.showPassword2 ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          }
-          labelWidth={110}
-        />
-      </FormControl>
+    <>
+      <Card style={{maxWidth:"500px",}} className="cp">
+        <Card.Body>
+          <h2 className="text-center mb-4">Update Profile</h2>
+          {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group id="email">
+              <Form.Label style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>Email</Form.Label>
+              <Form.Control
+                type="email"
+                ref={emailRef}
+                required
+                defaultValue={currentUser.email}
+              />
+            </Form.Group>
+            <Form.Group id="password">
+              <Form.Label style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>Password</Form.Label>
+              <Form.Control
+                type="password"
+                ref={passwordRef}
+                placeholder="Leave blank to keep the same"
+              />
+            </Form.Group>
+            <Form.Group id="password-confirm">
+              <Form.Label style={{float:"left",fontSize:"1.2em",fontWeight:"600px",marginLeft:"2px"}}>Password Confirmation</Form.Label>
+              <Form.Control
+                type="password"
+                ref={passwordConfirmRef}
+                placeholder="Leave blank to keep the same"
+              />
+            </Form.Group>
+            <Button disabled={loading} className="w-100" type="submit">
+              Update
+            </Button>
+          </Form>
+        </Card.Body>
+        <div className="w-100 text-center mt-2">
+        <Link to="/Profile">Cancel</Link>
       </div>
-      
-      <div className="form-row frms">
-      <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-      <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
-      <OutlinedInput
-        id="outlined-adornment-password"
-        type={values.showPassword ? 'text' : 'password'}
-        value={values.password}
-        onChange={handleChange('password')}
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              edge="end"
-            >
-              {values.showPassword ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-          </InputAdornment>
-        }
-        labelWidth={110}
-      />
-    </FormControl>
-    </div>
-      
-    <div className="form-row submit">
-    <Button variant="contained" style={{backgroundColor:"#CCCCFF"}}>Change Password</Button>
-    </div>
-
-      </div>
-    </div>
-  );
+      </Card>
+    </>
+  )
 }
