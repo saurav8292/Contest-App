@@ -45,7 +45,7 @@ export default function UpdateProfile() {
     <>
       <Card style={{maxWidth:"500px",}} className="cp">
         <Card.Body>
-          <h2 className="text-center mb-4">Update Profile</h2>
+          <h2 className="text-center mb-4">Update Info</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
