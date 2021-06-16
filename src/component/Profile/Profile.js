@@ -13,7 +13,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import IconButton from '@material-ui/core/IconButton';
 import SimpleModal from "./SimpleModals/SimpleModal";
-import { Button } from 'react-bootstrap';
+import {Alert} from 'react-bootstrap';
 import { useAuth } from "../../Context/AuthContext"
 import { db } from ".././Configure/Fire";
 
@@ -120,11 +120,12 @@ const Profile = () =>
       <Link to="/ProfileUpdate">Edit Profile</Link>,
       <SimpleModal/>,
       <Link to="/ChangePassword">Change Password</Link>,
-      <Button onClick={handleLogout}>Logout user</Button>
+      <Link onClick={handleLogout}>Logout user</Link>
     ];
   
     return (
         <div style={{maxWidth:"550px",margin:"0px auto"}}>
+        {error && <Alert variant="danger">{error}</Alert>}
         <div style={{
            margin:"58px 0px",
             borderBottom:"1px solid grey"
