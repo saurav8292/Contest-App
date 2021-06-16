@@ -1,22 +1,21 @@
-import React,{useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import {Link} from 'react-router-dom'
-import './modals.css'
-import Divider from '@material-ui/core/Divider';
-import {db} from "../../Configure/Fire";
-import { useAuth } from '../../../Context/AuthContext';
-import { useHistory } from 'react-router';
-import {Button} from "react-bootstrap"
-
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import { Link } from "react-router-dom";
+import "./modals.css";
+import Divider from "@material-ui/core/Divider";
+import { db, storage } from "../../Configure/Fire";
+import { useAuth } from "../../../Context/AuthContext";
+import { useHistory } from "react-router";
+import { Button } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: 250,
-    height:240,
+    height: 240,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -24,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleModal() {
   const { currentUser } = useAuth();
-  const [image,setImage]=useState();
+  const [image, setImage] = useState();
   const history = useHistory();
-  const [imgSrc,setImageSrc]=useState();
+  const [imgSrc, setImageSrc] = useState();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -37,42 +36,65 @@ export default function SimpleModal() {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleSelectImage=(e)=>
-  {
-    var file=e.target.files[0];
-    var reader=new FileReader();
-  }
-  const openEdit=()=>
-  {
-    const finput=document.getElementById("imageInput");
+  const handleSelectImage = (e) => {
+    var file = e.target.files[0];
+    setImage(file);
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file);
+
+    reader.onloadend = function (e) {
+      setImageSrc(reader.result);
+    };
+    console.log(url);
+  };
+  const openEdit = () => {
+    const finput = document.getElementById("imageInput");
     finput.click();
-  }
-  
+  };
+  const uploadImage = async () => {
+    const ref = storage.ref("/kishan");
+    const uploader = ref.put(image);
+
+    uploader.on("complete", (d) => {
+      console.log("Upload Done");
+      console.log(d);
+      const url = ref.getDownloadURL();
+      console.log(url);
+    });
+  };
   const body = (
     <div className={classes.paper} id="mod">
-    <input 
-    ref="file"
-    type="file"
-    id="imageInput"
-    hidden="hidden"
-    onChange={handleSelectImage} 
-    />
-      <h4 id="simple-modal-title" className="chng">Change Photo</h4>
+      <input
+        type="file"
+        id="imageInput"
+        hidden="hidden"
+        onChange={handleSelectImage}
+      />
+      <h4 id="simple-modal-title" className="chng">
+        Change Photo
+      </h4>
       <div id="simple-modal-description">
-      <Divider/>
-      <Button variant="link" className="slinks1" onClick={openEdit}>Upload Photo</Button>
-      <Divider/>
-      <Button variant="link" className="slinks2" >Remove Photo</Button>
-      <Divider/>
-      <Button variant="link" className="slinks3" onClick={handleClose}>Cancel</Button>
-      <img src={imgSrc} alt="..."></img>
+        <Divider />
+        <Button variant="link" className="slinks1" onClick={openEdit}>
+          Upload Photo
+        </Button>
+        <Divider />
+        <Button variant="link" className="slinks2">
+          Remove Photo
+        </Button>
+        <Divider />
+        <Button variant="link" className="slinks3" onClick={handleClose}>
+          Cancel
+        </Button>
+        <img height="100px" width="100px" src={imgSrc} alt="..."></img>
+        <Button onClick={uploadImage}>UPLOAD</Button>
       </div>
     </div>
   );
 
   return (
     <div>
-    <Link onClick={handleOpen}>Change Photo</Link>
+      <Link onClick={handleOpen}>Change Photo</Link>
       <Modal
         open={open}
         onClose={handleClose}
