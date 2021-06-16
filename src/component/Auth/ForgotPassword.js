@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import { Form, Button,Alert,Container,Col,Row} from "react-bootstrap"
 import { useAuth } from "../../Context/AuthContext"
-import { Link } from "react-router-dom"
+import { Link,useHistory} from "react-router-dom"
 import loginIcon from './images/avtar.png'
 import uiImg from './images/setup.png'
 export default function ForgotPassword() {
@@ -10,7 +10,7 @@ export default function ForgotPassword() {
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
-
+  const history = useHistory()
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -20,6 +20,9 @@ export default function ForgotPassword() {
       setLoading(true)
       await resetPassword(emailRef.current.value)
       setMessage("Kindly check your email")
+      setTimeout(()=>{
+        history.push('/login');
+      },2500);
     } catch {
       setError("Failed to reset password")
     }
@@ -31,6 +34,7 @@ export default function ForgotPassword() {
     <>
     <Container className="mt-5" style={{background:"white"}}>
     {error && <Alert variant="danger">{error}</Alert>}
+    {message && <Alert variant="danger">{message}</Alert>}
         <Row>
             <Col lg={4} md={6} sm={12} className="text-center mt-5 p-3">
             <h3 style={{color:"#00008b"}}>Welcome Back</h3>
