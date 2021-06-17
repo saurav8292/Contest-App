@@ -149,9 +149,9 @@ const Profile = () => {
             {snapshot && (
               <img
                 style={{
-                  width: "160px",
+                  width: "170px",
                   height: "160px",
-                  borderRadius: "80px",
+                  borderRadius: "100px",
                 }}
                 src={snapshot.data()["dpURL"] ? snapshot.data()["dpURL"] : img}
                 alt="Loading..."
