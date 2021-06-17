@@ -26,7 +26,7 @@ export default function SimpleModal() {
   const [imgSrc, setImageSrc] = useState();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [Url, seturl] = useState(null);
+  const [state,setstate]=useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -46,10 +46,12 @@ export default function SimpleModal() {
     };
   };
   const openEdit = () => {
+    setstate(!state);
     const finput = document.getElementById("imageInput");
     finput.click();
   };
   const uploadImage = async () => {
+    setstate(!state);
     const storageRef = storage.ref(`${currentUser.uid}_dp`);
     const firestoreRef = db.collection("users").doc(currentUser.uid);
     storageRef.put(image).on(
@@ -102,8 +104,10 @@ export default function SimpleModal() {
         <Button variant="link" className="slinks3" onClick={handleClose}>
           Cancel
         </Button>
-        <img height="100px" width="100px" src={imgSrc} alt=""></img>
-        <Button onClick={uploadImage}>UPLOAD</Button>
+      </div>
+      <div className={state ? 'show' : 'notshow'}>
+      <img height="240px" width="250px" src={imgSrc} alt="..." style={{marginTop:"-190px",marginLeft:"-33px"}}></img>
+      <Button onClick={uploadImage} style={{marginLeft:"40px",marginTop:"10px"}}>UPLOAD</Button>
       </div>
     </div>
   );

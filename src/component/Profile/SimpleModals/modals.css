@@ -6,24 +6,32 @@
 .slinks1
 {
     color:mediumblue;
-    margin-left: 30px;
+    margin-left: 20px;
     font-size: 1.2em;
+}
+.show
+{
+    display: block;
+}
+.notshow
+{
+    display: none;
 }
 .slinks2
 {
     color: red;
-    margin-left: 26px;
+    margin-left: 18px;
     font-size: 1.2em;
 }
 .slinks3
 {
-    margin-left: 50px;
+    margin-left: 48px;
     font-size: 1.2em;
 }
 .chng
 {
     margin-bottom: 10px;
-    margin-left: 10px;
+    margin-left: 12px;
 }
 @media screen and (max-width:800px)
 {
