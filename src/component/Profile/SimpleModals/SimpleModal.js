@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import { Link } from "react-router-dom";
 import "./modals.css";
 import Divider from "@material-ui/core/Divider";
-import { storage } from "../../Configure/Fire";
+import { storage, db } from "../../Configure/Fire";
 import { useAuth } from "../../../Context/AuthContext";
 import { Button } from "react-bootstrap";
 
@@ -26,7 +26,7 @@ export default function SimpleModal() {
   const [imgSrc, setImageSrc] = useState();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [Url,seturl]=useState(null);
+  const [Url, seturl] = useState(null);
 
   const handleOpen = () => {
     setOpen(true);
@@ -50,15 +50,33 @@ export default function SimpleModal() {
     finput.click();
   };
   const uploadImage = async () => {
-    const ref = storage.ref(currentUser.uid);
-    const uploader = ref.put(image);
-    uploader.on("complete", (d) => {
-      console.log("Upload done");
-      const url = ref.getDownloadURL();
-      seturl(url);
-      console.log(url);
-    });
-    handleClose();
+    const storageRef = storage.ref(`${currentUser.uid}_dp`);
+    const firestoreRef = db.collection("users").doc(currentUser.uid);
+    storageRef.put(image).on(
+      "state-changed",
+      (snap) => {
+        let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+        console.log(percentage);
+      },
+      (err) => {
+        console.log(err);
+      },
+      async () => {
+        const url = await storageRef.getDownloadURL();
+        firestoreRef.update({
+          dpURL: url,
+        });
+        handleClose();
+      }
+    );
+    // const ref = storage.ref(currentUser.uid);
+    // const uploader = ref.put(image);
+    // uploader.on("complete", (d) => {
+    //   console.log("Upload done");
+    //   const url = ref.getDownloadURL();
+    //   seturl(url);
+    //   console.log(url);
+    // });
   };
   const body = (
     <div className={classes.paper} id="mod">
@@ -104,4 +122,3 @@ export default function SimpleModal() {
     </div>
   );
 }
-
