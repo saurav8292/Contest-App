@@ -18,7 +18,9 @@ import { useAuth } from "../../Context/AuthContext";
 import { db } from ".././Configure/Fire";
 import { useCollection } from "react-firebase-hooks/firestore";
 import HomeIcon from '@material-ui/icons/Home';
-import Cards from "../stories/Cards"
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
+import PartyModeSharpIcon from '@material-ui/icons/PartyModeSharp';
+import AssignmentTurnedInSharpIcon from '@material-ui/icons/AssignmentTurnedInSharp';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,18 +53,6 @@ function a11yProps(index) {
     id: `nav-tab-${index}`,
     "aria-controls": `nav-tabpanel-${index}`,
   };
-}
-
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -210,35 +200,11 @@ const Profile = () => {
             onChange={handleChange}
             aria-label="nav tabs example"
           >
-            <LinkTab
-              label="Posts"
-              href="/drafts"
-              {...a11yProps(0)}
-              style={{ color: "grey" }}
-            />
-            <LinkTab
-              label="Bookmarks"
-              href="/trash"
-              {...a11yProps(1)}
-              style={{ color: "grey" }}
-            />
-            <LinkTab
-              label="Participated"
-              href="/spam"
-              {...a11yProps(2)}
-              style={{ color: "grey" }}
-            />
+          <Tab component={Link} to="/Profile/Posts" icon={<PartyModeSharpIcon/>}  {...a11yProps(0)} style={{color:"rgb(0,143,134)"}}/>
+          <Tab component={Link} to="/Profile/Bookmarks" icon={<BookmarksIcon/>}  {...a11yProps(0)} style={{color:"#00838F"}}/>
+          <Tab component={Link} to="/Profile/Participated" icon={<AssignmentTurnedInSharpIcon/>}  {...a11yProps(0)} style={{color:"#00838F"}}/>
           </Tabs>
         </AppBar>
-        <TabPanel value={value} index={0}>
-        <Cards/>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          Page Two
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Page Three
-        </TabPanel>
       </div>
     </div>
   );
