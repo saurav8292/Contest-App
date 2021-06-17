@@ -24,7 +24,7 @@ const ProfileUpdate = () => {
       city:ucity,
       state:ustate,
       country:ucountry,
-    });
+    },{merge:true});
     setMessage("Profile Updated!");
     setTimeout(()=>{
       history.push('/Profile');
