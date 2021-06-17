@@ -22,6 +22,7 @@ import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import PartyModeSharpIcon from '@material-ui/icons/PartyModeSharp';
 import AssignmentTurnedInSharpIcon from '@material-ui/icons/AssignmentTurnedInSharp';
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -201,7 +202,7 @@ const Profile = () => {
             aria-label="nav tabs example"
           >
           <Tab component={Link} to="/Profile/Posts" icon={<PartyModeSharpIcon/>}  {...a11yProps(0)} style={{color:"rgb(0,143,134)"}}/>
-          <Tab component={Link} to="/Profile/Bookmarks" icon={<BookmarksIcon/>}  {...a11yProps(0)} style={{color:"#00838F"}}/>
+          <Tab component={Link} to="/Profile/Bookmark" icon={<BookmarksIcon/>}  {...a11yProps(0)} style={{color:"#00838F"}}/>
           <Tab component={Link} to="/Profile/Participated" icon={<AssignmentTurnedInSharpIcon/>}  {...a11yProps(0)} style={{color:"#00838F"}}/>
           </Tabs>
         </AppBar>

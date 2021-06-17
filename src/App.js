@@ -14,6 +14,9 @@ import Navbar from "./component/Navbar/Navbar";
 import ForgotPassword from "./component/Auth/ForgotPassword";
 import NewPost from "./component/stories/NewPost";
 import Participate from "./component/stories/Participate";
+import Posts from "./component/Profile/Posts/Posts"
+import Bookmark from "./component/Profile/Bookmarks/Bookmark"
+import Participated from "./component/Profile/Participated/Participated"
 const App = () => {
   return (
     <AuthProvider>
@@ -33,6 +36,9 @@ const App = () => {
             <PrivateRoute path="/ChangePassword" component={ChangePassword} />
             <PrivateRoute path="/NewPost" component={NewPost}/>
             <PrivateRoute path="/Participate" component={Participate}/>
+            <PrivateRoute path="/Profile/Posts" component={Posts}/>
+            <PrivateRoute path="/Profile/Bookmark" component={Bookmark}/>
+            <PrivateRoute path="/Profile/Participated" component={Participated}/>
           </>
         </Switch>
       </div>
