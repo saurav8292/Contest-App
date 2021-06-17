@@ -11,6 +11,8 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import Cards from './Cards'
 import './Stories.css'
+import { Link } from 'react-router-dom';
+import Tooltips from "./Tooltips"
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
@@ -63,12 +65,12 @@ export default function Stories(props) {
       <CssBaseline />
       <Toolbar id="back-to-top-anchor" />
       <Container>
+      <Link to="/NewPost"><Tooltips/></Link>
       <div className="cardss">
       <Cards/>
       <Cards/>
       </div>
         <Box my={2}>
-        
         </Box>
       </Container>
       <ScrollTop {...props}>

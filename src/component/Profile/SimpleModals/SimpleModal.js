@@ -6,7 +6,6 @@ import "./modals.css";
 import Divider from "@material-ui/core/Divider";
 import { storage } from "../../Configure/Fire";
 import { useAuth } from "../../../Context/AuthContext";
-import { useHistory } from "react-router";
 import { Button } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleModal() {
   const { currentUser } = useAuth();
   const [image, setImage] = useState();
-  const history = useHistory();
   const [imgSrc, setImageSrc] = useState();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [Url,seturl]=useState(null);
 
   const handleOpen = () => {
     setOpen(true);
@@ -41,11 +40,10 @@ export default function SimpleModal() {
     setImage(file);
     var reader = new FileReader();
     var url = reader.readAsDataURL(file);
-
+    console.log(url);
     reader.onloadend = function (e) {
       setImageSrc(reader.result);
     };
-    console.log(url);
   };
   const openEdit = () => {
     const finput = document.getElementById("imageInput");
@@ -54,10 +52,10 @@ export default function SimpleModal() {
   const uploadImage = async () => {
     const ref = storage.ref(currentUser.uid);
     const uploader = ref.put(image);
-
     uploader.on("complete", (d) => {
       console.log("Upload done");
       const url = ref.getDownloadURL();
+      seturl(url);
       console.log(url);
     });
     handleClose();
@@ -86,7 +84,7 @@ export default function SimpleModal() {
         <Button variant="link" className="slinks3" onClick={handleClose}>
           Cancel
         </Button>
-        <img height="100px" width="100px" src={imgSrc} alt="..."></img>
+        <img height="100px" width="100px" src={imgSrc} alt=""></img>
         <Button onClick={uploadImage}>UPLOAD</Button>
       </div>
     </div>

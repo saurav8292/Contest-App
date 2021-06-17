@@ -17,7 +17,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import img from './Assets/waterfall.jpg'
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 785,
@@ -64,7 +64,7 @@ export default function Cards() {
     setAnchorEl(null);
   };
   const MyOptions = [
-    "participate Now",
+    <Link to="/Participate">Participate Now</Link>,
     "share ",
     "Bookmark",
     "send feedbck"
