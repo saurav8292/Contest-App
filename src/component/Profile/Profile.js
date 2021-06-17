@@ -17,6 +17,7 @@ import { Alert } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
 import { db } from ".././Configure/Fire";
 import { useCollection } from "react-firebase-hooks/firestore";
+import HomeIcon from '@material-ui/icons/Home';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -193,10 +194,10 @@ const Profile = () => {
           >
             {uname}
           </p>
-          <h6>
-            {" "}
+          <h5>
+            {<HomeIcon/>}{" "}
             Lives In {ucity},{ustate},{ucountry}
-          </h6>
+          </h5>
         </div>
       </div>
 
