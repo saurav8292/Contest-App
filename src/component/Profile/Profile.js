@@ -18,6 +18,7 @@ import { useAuth } from "../../Context/AuthContext";
 import { db } from ".././Configure/Fire";
 import { useCollection } from "react-firebase-hooks/firestore";
 import HomeIcon from '@material-ui/icons/Home';
+import Cards from "../stories/Cards"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -196,7 +197,7 @@ const Profile = () => {
           </p>
           <h5>
             {<HomeIcon/>}{" "}
-            Lives In {ucity},{ustate},{ucountry}
+            Lives In {" "}{ucity},{ustate},{ucountry}
           </h5>
         </div>
       </div>
@@ -230,7 +231,7 @@ const Profile = () => {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          Page One
+        <Cards/>
         </TabPanel>
         <TabPanel value={value} index={1}>
           Page Two

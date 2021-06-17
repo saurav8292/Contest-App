@@ -3,7 +3,7 @@ import React from "react"
 const Participate = () =>
 {
     return(
-      <div>HEY THERE </div>
+      <div style={{marginTop:"90px"}}>HEY THERE </div>
     )
 }
 export default Participate
