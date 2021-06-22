@@ -24,9 +24,6 @@ const useStyles = makeStyles((theme) => ({
 function ScrollTop(props) {
   const { children, window } = props;
   const classes = useStyles();
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
@@ -52,10 +49,6 @@ function ScrollTop(props) {
 
 ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 
@@ -67,6 +60,8 @@ export default function Stories(props) {
       <Container>
       <Link to="/NewPost"><Tooltips/></Link>
       <div className="cardss">
+      <Cards/>
+      <Cards/>
       <Cards/>
       <Cards/>
       </div>

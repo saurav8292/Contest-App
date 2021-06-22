@@ -18,13 +18,14 @@ import img from './Assets/waterfall.jpg'
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { Link } from 'react-router-dom';
+import "./Stories.css"
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 785,
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -48,7 +49,7 @@ export default function Cards() {
   const [expanded, setExpanded] = React.useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const [state,setState]=React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -56,7 +57,10 @@ export default function Cards() {
     setAnchorEl(event.currentTarget);
   };
   
-  
+  const handleChange=()=>
+  {
+    setState(!state);
+  }
 
   const open = Boolean(anchorEl);
   
@@ -116,7 +120,7 @@ export default function Cards() {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="likes">
+        <IconButton aria-label="likes" onClick={handleChange} className={state ? 'red' : 'white'}>
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">

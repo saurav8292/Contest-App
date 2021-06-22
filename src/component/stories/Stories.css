@@ -2,7 +2,10 @@
 {
     padding-left: 20%;
 }
-
+.red
+{
+    color: red;
+}
 @media screen and (max-width: 1250px)
 {
     .cardss
